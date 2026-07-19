@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sage Fitness &amp; Breathe — Train Wisely</title>
+<meta name="description" content="A private fitness sanctuary in Glendale &amp; Montrose, CA. Sage Fitness: appointment-only personal training. Breathe: a capped-capacity private membership gym. Floor never exceeds four people, per hour.">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Archivo:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          bone: '#F3EEE4',
+          warmwhite: '#FBF9F4',
+          charcoal: '#211F1A',
+          ink: '#38362C',
+          sage: '#6E7A57',
+          sagedeep: '#4C5539',
+          line: '#D8D0BC',
+          linedark: '#3B392F',
+        },
+        fontFamily: {
+          serif: ['Fraunces', 'serif'],
+          sans: ['Archivo', 'sans-serif'],
+          mono: ['"Space Mono"', 'monospace'],
+        },
+      }
+    }
+  }
+</script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body { background-color: #F3EEE4; }
+
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1); }
+  .reveal.is-visible { opacity: 1; transform: translateY(0); }
+  .reveal-stagger.is-visible .stagger-item { opacity: 1; transform: translateY(0); }
+  .stagger-item { opacity: 0; transform: translateY(14px); transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal, .stagger-item { opacity: 1 !important; transform: none !important; transition: none !important; }
+    html { scroll-behavior: auto; }
+  }
+
+  .eyebrow {
+    font-family: 'Space Mono', monospace;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-size: 0.72rem;
+  }
+
+  .cap-mark { display: inline-flex; align-items: center; gap: 6px; }
+  .cap-dot { width: 6px; height: 6px; border-radius: 999px; background: currentColor; display: inline-block; }
+  .cap-dot.ghost { background: transparent; border: 1px solid currentColor; opacity: 0.4; }
+
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid #6E7A57;
+    outline-offset: 3px;
+  }
+
+  .hairline { border-color: #D8D0BC; }
+  .hairline-dark { border-color: #3B392F; }
+
+  .placeholder-img {
+    background: repeating-linear-gradient(135deg, #E7E0D0, #E7E0D0 12px, #DED5C1 12px, #DED5C1 24px);
+    display: flex; align-items: center; justify-content: center;
+    color: #8b8368; font-family: 'Space Mono', monospace; font-size: 0.7rem;
+    letter-spacing: 0.05em; text-align: center; padding: 1rem;
+  }
+  .placeholder-img.dark {
+    background: repeating-linear-gradient(135deg, #2c2a23, #2c2a23 12px, #26241e 12px, #26241e 24px);
+    color: #8f8a72;
+  }
+
+  .fade-underline {
+    position: relative;
+    text-decoration: none;
+  }
+  .fade-underline::after {
+    content: '';
+    position: absolute;
+    left: 0; bottom: -2px;
+    width: 100%; height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+  .fade-underline:hover::after { transform: scaleX(1); }
+
+  .rate-row { transition: background-color 0.3s ease; }
+  .rate-row:hover { background-color: rgba(110,122,87,0.06); }
+
+  #capacitySvg circle { transition: fill 0.6s ease, opacity 0.6s ease; }
+</style>
+</head>
+
+<body class="bg-bone text-ink font-sans antialiased">
+
+<!-- ============ BACK TO PORTFOLIO ============ -->
+<div class="fixed top-6 left-6 z-50">
+  <a href="index.html" class="inline-flex items-center gap-2 text-sm font-mono text-ink/60 hover:text-sage transition-colors">
+    ← Back to portfolio
+  </a>
+</div>
+
+<!-- ============ NAV ============ -->
+<header class="fixed top-0 left-0 right-0 z-40 backdrop-blur-sm bg-bone/85 border-b hairline">
+  <div class="max-w-[1400px] mx-auto px-6 md:px-10 h-[72px] flex items-center justify-between">
+    <a href="#top" class="flex items-center gap-3">
+      <span class="cap-mark text-sage">
+        <span class="cap-dot"></span><span class="cap-dot"></span><span class="cap-dot"></span><span class="cap-dot"></span>
+      </span>
+      <span class="font-serif text-lg tracking-tight text-charcoal">Sage Fitness <span class="text-sage">&amp;</span> Breathe</span>
+    </a>
+    <nav class="hidden lg:flex items-center gap-8 eyebrow text-ink/70">
+      <a href="#philosophy" class="fade-underline hover:text-charcoal">Philosophy</a>
+      <a href="#arms" class="fade-underline hover:text-charcoal">Sage &amp; Breathe</a>
+      <a href="#pricing" class="fade-underline hover:text-charcoal">Rates</a>
+      <a href="#founder" class="fade-underline hover:text-charcoal">Founder</a>
+      <a href="#locations" class="fade-underline hover:text-charcoal">Locations</a>
+    </nav>
+    <a href="#contact" class="hidden sm:inline-flex items-center gap-2 border border-charcoal text-charcoal px-5 py-2.5 text-sm font-medium hover:bg-charcoal hover:text-bone transition-colors">
+      Reserve a Session
+    </a>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section id="top" class="relative pt-[72px] min-h-[92vh] flex flex-col justify-between overflow-hidden">
+  <div class="absolute inset-0 -z-10 bg-bone"></div>
+
+  <div class="max-w-[1400px] mx-auto w-full px-6 md:px-10 pt-16 md:pt-24 flex-1 flex flex-col justify-center">
+    <p class="eyebrow text-sage mb-6 reveal">A private fitness sanctuary — Glendale &amp; Montrose, CA</p>
+
+    <h1 class="font-serif text-charcoal leading-[0.94] text-[15vw] sm:text-[11vw] md:text-[7.4vw] lg:text-[6.6vw] tracking-tight reveal">
+      Train<br><span class="italic font-light text-sage">wisely.</span>
+    </h1>
+
+    <div class="mt-10 md:mt-14 grid md:grid-cols-2 gap-8 md:gap-16 max-w-4xl reveal">
+      <div class="border-l hairline pl-5">
+        <p class="eyebrow text-ink/50 mb-2">Arm one</p>
+        <p class="font-serif text-xl md:text-2xl text-charcoal mb-1">Sage Fitness</p>
+        <p class="text-ink/70 text-sm md:text-base leading-relaxed">Appointment-only, one-on-one training with 40+ elite independent coaches.</p>
+      </div>
+      <div class="border-l hairline pl-5">
+        <p class="eyebrow text-ink/50 mb-2">Arm two</p>
+        <p class="font-serif text-xl md:text-2xl text-charcoal mb-1">Breathe</p>
+        <p class="text-ink/70 text-sm md:text-base leading-relaxed">A private membership gym. Keyless, 24/7, capacity always capped.</p>
+      </div>
+    </div>
+
+    <div class="mt-10 flex flex-wrap gap-4 reveal">
+      <a href="#contact" class="inline-flex items-center justify-center bg-sage text-bone px-7 py-4 text-sm font-medium tracking-wide hover:bg-sagedeep transition-colors">
+        Reserve a Session — Sage Fitness
+      </a>
+      <a href="#pricing" class="inline-flex items-center justify-center border border-charcoal text-charcoal px-7 py-4 text-sm font-medium tracking-wide hover:bg-charcoal hover:text-bone transition-colors">
+        Join Breathe
+      </a>
+    </div>
+  </div>
+
+  <div class="border-t hairline">
+    <div class="max-w-[1400px] mx-auto px-6 md:px-10 py-4 flex flex-wrap items-center justify-between gap-3 eyebrow text-ink/50">
+      <span class="cap-mark"><span class="cap-dot bg-sage"></span><span class="cap-dot bg-sage"></span><span class="cap-dot bg-sage"></span><span class="cap-dot bg-sage"></span><span class="cap-dot ghost text-ink/40"></span> capped at four, per hour</span>
+      <span class="hidden sm:inline">Glendale · Montrose, California</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PHILOSOPHY ============ -->
+<section id="philosophy" class="bg-charcoal text-bone py-28 md:py-36">
+  <div class="max-w-[1400px] mx-auto px-6 md:px-10">
+    <div class="grid lg:grid-cols-12 gap-12 lg:gap-8">
+
+      <div class="lg:col-span-5 reveal">
+        <p class="eyebrow text-sage mb-6">The philosophy</p>
+        <h2 class="font-serif text-3xl md:text-4xl leading-[1.15] mb-8">
+          We built the opposite of a gym floor. No crowds. No noise. No waiting for a bench.
+        </h2>
+        <p class="text-bone/70 leading-relaxed mb-5 max-w-md">
+          Most fitness businesses grow by filling floor space. We grow by refusing to. Every session — coached or autonomous — happens on a floor that has never once held more than four people at a time.
+        </p>
+        <p class="text-bone/70 leading-relaxed max-w-md">
+          That's not a marketing number. It's a hard operational cap, held across appointment scheduling and membership sizing alike, in service of clinical-grade safety, undivided coaching attention, and a training environment built for longevity — not a scene.
+        </p>
+      </div>
+
+      <div class="lg:col-span-7 lg:pl-8 flex flex-col justify-center">
+        <div class="reveal">
+          <div class="flex items-end gap-6 md:gap-10 mb-6">
+            <span class="font-mono text-[5rem] md:text-[8rem] leading-none text-sage" id="capCounter">4</span>
+            <span class="font-serif italic text-2xl md:text-3xl text-bone/80 pb-3 md:pb-6">clients, maximum —<br>per hour, per facility.</span>
+          </div>
+
+          <svg id="capacitySvg" viewBox="0 0 340 60" class="w-full max-w-md h-auto mb-3" aria-hidden="true">
+            <circle cx="30"  cy="30" r="12" fill="none" stroke="#6E7A57" stroke-width="1.5" opacity="0.9"></circle>
+            <circle cx="100" cy="30" r="12" fill="none" stroke="#6E7A57" stroke-width="1.5" opacity="0.9"></circle>
+            <circle cx="170" cy="30" r="12" fill="none" stroke="#6E7A57" stroke-width="1.5" opacity="0.9"></circle>
+            <circle cx="240" cy="30" r="12" fill="none" stroke="#6E7A57" stroke-width="1.5" opacity="0.9"></circle>
+            <circle cx="310" cy="30" r="12" fill="none" stroke="#8a836b" stroke-width="1.5" stroke-dasharray="3 3" opacity="0.5"></circle>
+            <line x1="298" y1="18" x2="322" y2="42" stroke="#8a836b" stroke-width="1.2" opacity="0.5"></line>
+          </svg>
+          <p class="eyebrow text-bone/40">the fifth spot doesn't exist by design</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ TWO ARMS ============ -->
+<section id="arms" class="py-28 md:py-36">
+  <div class="max-w-[1400px] mx-auto px-6 md:px-10">
+    <p class="eyebrow text-sage mb-4 reveal">Two arms, one standard</p>
+    <h2 class="font-serif text-3xl md:text-5xl text-charcoal max-w-2xl mb-16 md:mb-20 reveal">
+      One roof. Two ways to train wisely.
+    </h2>
+
+    <div class="grid md:grid-cols-2 border-t border-l hairline reveal-stagger">
+      <div class="stagger-item border-r border-b hairline p-8 md:p-12">
+        <p class="eyebrow text-ink/40 mb-4">01 — Sage Fitness</p>
+        <h3 class="font-serif text-2xl md:text-3xl text-charcoal mb-6">Private, coached, by appointment.</h3>
+        <ul class="space-y-4 text-ink/75 leading-relaxed">
+          <li class="flex gap-3"><span class="text-sage mt-1">—</span><span>40+ elite independent trainers, each running their own practice under our roof</span></li>
+          <li class="flex gap-3"><span class="text-sage mt-1">—</span><span>One-on-one, duo, or semi-private coaching — never an open class</span></li>
+          <li class="flex gap-3"><span class="text-sage mt-1">—</span><span>Appointment-only access, so the floor is yours when you arrive</span></li>
+          <li class="flex gap-3"><span class="text-sage mt-1">—</span><span>Sessions built around biomechanics and longevity, not volume</span></li>
+        </ul>
+        <a href="#contact" class="fade-underline inline-block mt-8 text-charcoal font-medium">Reserve a session →</a>
+      </div>
+      <div class="stagger-item border-b hairline p-8 md:p-12 bg-warmwhite">
+        <p class="eyebrow text-ink/40 mb-4">02 — Breathe</p>
+        <h3 class="font-serif text-2xl md:text-3xl text-charcoal mb-6">Private, autonomous, on your clock.</h3>
+        <ul class="space-y-4 text-ink/75 leading-relaxed">
+          <li class="flex gap-3"><span class="text-sage mt-1">—</span><span>24/7 keyless access — train at 6am or midnight, same quiet floor</span></li>
+          <li class="flex gap-3"><span class="text-sage mt-1">—</span><span>Autonomous training for members who know their program</span></li>
+          <li class="flex gap-3"><span class="text-sage mt-1">—</span><span>Capped membership size — the roster stays as private as the floor</span></li>
+          <li class="flex gap-3"><span class="text-sage mt-1">—</span><span>Never a wait for equipment; there is structurally no line to form</span></li>
+        </ul>
+        <a href="#pricing" class="fade-underline inline-block mt-8 text-charcoal font-medium">See membership rates →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRICING ============ -->
+<section id="pricing" class="py-28 md:py-36 bg-warmwhite border-t border-b hairline">
+  <div class="max-w-[1400px] mx-auto px-6 md:px-10">
+    <div class="grid lg:grid-cols-12 gap-12 mb-14 md:mb-20">
+      <div class="lg:col-span-5 reveal">
+        <p class="eyebrow text-sage mb-4">Rates</p>
+        <h2 class="font-serif text-3xl md:text-5xl text-charcoal leading-tight">A rate card, held to a clinical standard.</h2>
+      </div>
+      <div class="lg:col-span-6 lg:col-start-7 flex items-end reveal">
+        <p class="text-ink/70 leading-relaxed max-w-md">
+          Coaching rates reflect thirty years of combined sports-science training among our independent practitioners. Breathe membership reflects a floor that is never crowded — by contract, not by luck.
+        </p>
+      </div>
+    </div>
+
+    <div class="reveal-stagger font-mono">
+      <div class="stagger-item rate-row grid grid-cols-[1fr_auto] md:grid-cols-[2fr_1fr_auto] gap-4 items-center py-6 border-t hairline">
+        <div>
+          <p class="font-sans font-medium text-charcoal text-base md:text-lg">Private, 1-on-1</p>
+          <p class="text-xs text-ink/50 mt-1">30 &amp; 45-minute sessions available</p>
+        </div>
+        <p class="hidden md:block text-xs text-ink/50">packaged rate $89–92/hr</p>
+        <p class="text-lg md:text-xl text-sage text-right">$92<span class="text-sm text-ink/50">/hr</span></p>
+      </div>
+
+      <div class="stagger-item rate-row grid grid-cols-[1fr_auto] md:grid-cols-[2fr_1fr_auto] gap-4 items-center py-6 border-t hairline">
+        <div>
+          <p class="font-sans font-medium text-charcoal text-base md:text-lg">Duo / Semi-Private</p>
+          <p class="text-xs text-ink/50 mt-1">Split coaching, still never more than two clients per trainer</p>
+        </div>
+        <p class="hidden md:block text-xs text-ink/50">packaged rate $125/hr</p>
+        <p class="text-lg md:text-xl text-sage text-right">$130<span class="text-sm text-ink/50">/hr</span></p>
+      </div>
+
+      <div class="stagger-item rate-row grid grid-cols-[1fr_auto] md:grid-cols-[2fr_1fr_auto] gap-4 items-center py-6 border-t hairline">
+        <div>
+          <p class="font-sans font-medium text-charcoal text-base md:text-lg">Independent Trainer, Facility Rental</p>
+          <p class="text-xs text-ink/50 mt-1">For coaches running their own practice on our floor</p>
+        </div>
+        <p class="hidden md:block text-xs text-ink/50">&nbsp;</p>
+        <p class="text-lg md:text-xl text-sage text-right">$24<span class="text-sm text-ink/50">/hr</span></p>
+      </div>
+
+      <div class="stagger-item rate-row grid grid-cols-[1fr_auto] md:grid-cols-[2fr_1fr_auto] gap-4 items-center py-6 border-t border-b hairline">
+        <div>
+          <p class="font-sans font-medium text-charcoal text-base md:text-lg">Breathe Membership</p>
+          <p class="text-xs text-ink/50 mt-1">24/7 keyless access, capped capacity, autonomous training</p>
+        </div>
+        <p class="hidden md:block text-xs text-ink/50">&nbsp;</p>
+        <p class="text-lg md:text-xl text-sage text-right">$175<span class="text-sm text-ink/50">/mo</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOUNDER ============ -->
+<section id="founder" class="py-28 md:py-36">
+  <div class="max-w-[1400px] mx-auto px-6 md:px-10">
+    <p class="eyebrow text-sage mb-4 reveal">The founder</p>
+
+    <div class="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+      <div class="lg:col-span-5 reveal">
+        <!-- Placeholder: editorial portrait of Dr. Sage Noh, natural light, studio or facility setting, three-quarter framing -->
+        <div class="placeholder-img aspect-[4/5] w-full" role="img" aria-label="Editorial portrait of Dr. Sage Noh">
+          founder portrait — Dr. Sage Noh<br>three-quarter frame, natural light, facility backdrop
+        </div>
+      </div>
+
+      <div class="lg:col-span-7">
+        <h2 class="font-serif text-3xl md:text-5xl text-charcoal leading-tight mb-8 reveal">Dr. Sage Noh</h2>
+
+        <p class="font-serif italic text-xl md:text-2xl text-sagedeep leading-snug mb-10 max-w-2xl reveal">
+          "109 pounds in 2000. 200 pounds, under 10% body fat, by 2007. Not by accident — by sports science, applied deliberately, for seven years."
+        </p>
+
+        <div class="grid sm:grid-cols-2 gap-8 reveal-stagger">
+          <div class="stagger-item">
+            <p class="eyebrow text-ink/40 mb-2">Academic path</p>
+            <p class="text-ink/75 leading-relaxed text-sm">NYU, 2004 — Music Composition &amp; Theory, completed alongside full pre-med prerequisites and a Chemistry minor. Advanced into USC's Doctorate track for Physical Therapy.</p>
+          </div>
+          <div class="stagger-item">
+            <p class="eyebrow text-ink/40 mb-2">Trained at</p>
+            <p class="text-ink/75 leading-relaxed text-sm">Gravity Spa at Le Parker Méridien Hotel, Trump Riverside, Palladium Gym, and World Gym — New York City's top luxury fitness environments.</p>
+          </div>
+          <div class="stagger-item sm:col-span-2">
+            <p class="eyebrow text-ink/40 mb-2">The transformation</p>
+            <p class="text-ink/75 leading-relaxed text-sm max-w-2xl">Dr. Noh's own body is the proof of concept behind the practice. A seven-year rebuild — from 109 lbs to 200 lbs at under 10% body fat — grounded not in willpower alone, but in the deliberate application of biomechanics and sports science. Every program at Sage Fitness carries that same discipline: measured, sequenced, and built to last.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EQUIPMENT ============ -->
+<section class="py-28 md:py-36 bg-charcoal text-bone">
+  <div class="max-w-[1400px] mx-auto px-6 md:px-10">
+    <div class="grid lg:grid-cols-12 gap-10 mb-16 md:mb-20">
+      <div class="lg:col-span-5 reveal">
+        <p class="eyebrow text-sage mb-4">The hardware</p>
+        <h2 class="font-serif text-3xl md:text-5xl leading-tight">Precision instruments, not equipment.</h2>
+      </div>
+      <div class="lg:col-span-6 lg:col-start-7 flex items-end reveal">
+        <p class="text-bone/60 leading-relaxed max-w-md">Every machine on the floor is chosen for biomechanical accuracy first. Nothing is here to fill space.</p>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-px bg-linedark reveal-stagger">
+      <div class="stagger-item bg-charcoal p-8 md:p-10">
+        <p class="eyebrow text-bone/40 mb-5">Strength</p>
+        <ul class="space-y-3 text-bone/80 text-sm leading-relaxed">
+          <li>Hoist MI-6 dual-action pulley systems</li>
+          <li>Hoist dual-action smith machines</li>
+          <li>Hoist leg press &amp; hack squat</li>
+          <li>Hoist leg curl &amp; extension</li>
+        </ul>
+      </div>
+      <div class="stagger-item bg-charcoal p-8 md:p-10">
+        <p class="eyebrow text-bone/40 mb-5">Stabilization &amp; Free Weights</p>
+        <ul class="space-y-3 text-bone/80 text-sm leading-relaxed">
+          <li>Vicore core-stabilizing benches</li>
+          <li>Antibacterial Hampton gel-grip dumbbells</li>
+          <li>Hampton urethane plates &amp; barbells</li>
+        </ul>
+      </div>
+      <div class="stagger-item bg-charcoal p-8 md:p-10">
+        <p class="eyebrow text-bone/40 mb-5">Cardio &amp; Functional</p>
+        <ul class="space-y-3 text-bone/80 text-sm leading-relaxed">
+          <li>Assault curved treadmills</li>
+          <li>Concept2 rowers</li>
+          <li>TRX systems &amp; Body Opponent Bags</li>
+          <li>Battle ropes, weighted jump ropes, kettlebells</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Placeholder: full-bleed equipment close-up, e.g. Hoist pulley system detail, low angle, dramatic side light -->
+    <div class="placeholder-img dark w-full h-64 md:h-96 mt-px" role="img" aria-label="Close-up of Hoist pulley system, low angle, dramatic side light">
+      equipment close-up — Hoist pulley detail, low angle
+    </div>
+  </div>
+</section>
+
+<!-- ============ AMENITIES ============ -->
+<section class="py-28 md:py-36">
+  <div class="max-w-[1400px] mx-auto px-6 md:px-10">
+    <div class="grid lg:grid-cols-12 gap-12">
+      <div class="lg:col-span-4 reveal">
+        <p class="eyebrow text-sage mb-4">Amenities</p>
+        <h2 class="font-serif text-3xl md:text-4xl text-charcoal leading-tight">The quiet details.</h2>
+      </div>
+
+      <div class="lg:col-span-7 lg:col-start-6">
+        <ul class="reveal-stagger divide-y hairline border-t border-b hairline">
+          <li class="stagger-item flex items-center justify-between py-5">
+            <span class="text-ink/80">Private, secure parking and a separate private entrance at every location</span>
+          </li>
+          <li class="stagger-item flex items-center justify-between py-5">
+            <span class="text-ink/80">Fresh towel service</span>
+          </li>
+          <li class="stagger-item flex items-center justify-between py-5">
+            <span class="text-ink/80">Organic Keurig coffee &amp; tea bar</span>
+          </li>
+          <li class="stagger-item flex items-center justify-between py-5">
+            <span class="text-ink/80">100% recycled bottled water</span>
+          </li>
+          <li class="stagger-item flex items-center justify-between py-5">
+            <span class="text-ink/80">High-end bathroom amenities</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GIVING BACK ============ -->
+<section class="py-16 md:py-20 border-t border-b hairline bg-warmwhite">
+  <div class="max-w-[1400px] mx-auto px-6 md:px-10">
+    <p class="text-ink/60 text-sm leading-relaxed reveal max-w-2xl mx-auto text-center">
+      Each month, Sage Fitness Group makes a corporate donation to the Leukemia &amp; Lymphoma Society.
+    </p>
+  </div>
+</section>
+
+<!-- ============ LOCATIONS ============ -->
+<section id="locations" class="py-28 md:py-36">
+  <div class="max-w-[1400px] mx-auto px-6 md:px-10">
+    <p class="eyebrow text-sage mb-4 reveal">Locations</p>
+    <h2 class="font-serif text-3xl md:text-5xl text-charcoal max-w-2xl mb-14 md:mb-20 reveal">Four rooms. One standard.</h2>
+
+    <div class="reveal-stagger grid md:grid-cols-2 gap-x-12">
+      <div class="stagger-item border-t hairline py-7 flex items-start justify-between gap-6">
+        <div>
+          <p class="eyebrow text-ink/40 mb-1">Sage Fitness</p>
+          <p class="font-serif text-lg md:text-xl text-charcoal">1150 N. Brand Blvd</p>
+          <p class="text-ink/60 text-sm font-mono">Glendale, CA 91202</p>
+        </div>
+      </div>
+      <div class="stagger-item border-t hairline py-7 flex items-start justify-between gap-6">
+        <div>
+          <p class="eyebrow text-ink/40 mb-1">Sage Fitness</p>
+          <p class="font-serif text-lg md:text-xl text-charcoal">2321 Honolulu Ave</p>
+          <p class="text-ink/60 text-sm font-mono">Montrose, CA 91020</p>
+        </div>
+      </div>
+      <div class="stagger-item border-t hairline py-7 flex items-start justify-between gap-6">
+        <div>
+          <p class="eyebrow text-ink/40 mb-1">Sage Fitness</p>
+          <p class="font-serif text-lg md:text-xl text-charcoal">6318 San Fernando Rd</p>
+          <p class="text-ink/60 text-sm font-mono">Glendale, CA 91201</p>
+        </div>
+      </div>
+      <div class="stagger-item border-t border-b hairline py-7 flex items-start justify-between gap-6 md:border-b-0">
+        <div>
+          <p class="eyebrow text-sage mb-1">Breathe</p>
+          <p class="font-serif text-lg md:text-xl text-charcoal">2427 Honolulu Ave</p>
+          <p class="text-ink/60 text-sm font-mono">Montrose, CA 91020</p>
+        </div>
+      </div>
+    </div>
+    <div class="border-t hairline md:border-t-0"></div>
+  </div>
+</section>
+
+<!-- ============ CONTACT / FOOTER ============ -->
+<footer id="contact" class="bg-charcoal text-bone pt-24 pb-10 md:pt-32">
+  <div class="max-w-[1400px] mx-auto px-6 md:px-10">
+    <div class="grid lg:grid-cols-12 gap-12 mb-20">
+      <div class="lg:col-span-7 reveal">
+        <p class="eyebrow text-sage mb-6">Reserve or join</p>
+        <h2 class="font-serif text-3xl md:text-5xl leading-tight mb-10 max-w-xl">
+          The floor holds four. Reserve yours.
+        </h2>
+        <div class="flex flex-wrap gap-4">
+          <a href="mailto:sagefitnessgroup@gmail.com" class="inline-flex items-center justify-center bg-sage text-bone px-7 py-4 text-sm font-medium tracking-wide hover:bg-sagedeep transition-colors">
+            Reserve a Session
+          </a>
+          <a href="mailto:sagefitnessgroup@gmail.com" class="inline-flex items-center justify-center border border-bone/40 text-bone px-7 py-4 text-sm font-medium tracking-wide hover:bg-bone hover:text-charcoal transition-colors">
+            Join Breathe
+          </a>
+        </div>
+      </div>
+
+      <div class="lg:col-span-4 lg:col-start-9 reveal grid gap-8">
+        <div>
+          <p class="eyebrow text-bone/40 mb-2">Contact</p>
+          <a href="mailto:sagefitnessgroup@gmail.com" class="fade-underline block text-bone/85 font-mono text-sm mb-1">sagefitnessgroup@gmail.com</a>
+          <a href="tel:+18189309688" class="fade-underline inline-block text-bone/85 font-mono text-sm">(818) 930-9688</a>
+        </div>
+        <div>
+          <p class="eyebrow text-bone/40 mb-2">Hours</p>
+          <p class="text-bone/70 text-sm font-mono">Mon–Fri · 5am – 10pm</p>
+          <p class="text-bone/70 text-sm font-mono">Sat–Sun · 6am – 10pm</p>
+        </div>
+        <div>
+          <p class="eyebrow text-bone/40 mb-2">Follow</p>
+          <div class="flex gap-4 text-sm">
+            <a href="#" class="fade-underline text-bone/85">Instagram</a>
+            <a href="#" class="fade-underline text-bone/85">Facebook</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="border-t hairline-dark pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-bone/40 font-mono">
+      <span class="cap-mark"><span class="cap-dot bg-sage"></span><span class="cap-dot bg-sage"></span><span class="cap-dot bg-sage"></span><span class="cap-dot bg-sage"></span> Sage Fitness &amp; Breathe — Train Wisely.</span>
+      <span>© 2026 Sage Fitness Group</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Scroll-triggered reveals
+  const revealEls = document.querySelectorAll('.reveal, .reveal-stagger');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+  revealEls.forEach(el => io.observe(el));
+
+  // Capacity mark animation in Philosophy section: fill the four circles in sequence on view
+  const capSvg = document.getElementById('capacitySvg');
+  if (capSvg) {
+    const filledCircles = capSvg.querySelectorAll('circle:not([stroke-dasharray])');
+    const capIo = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          filledCircles.forEach((c, i) => {
+            setTimeout(() => {
+              c.setAttribute('fill', '#6E7A57');
+              c.setAttribute('opacity', '1');
+            }, i * 220);
+          });
+          capIo.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.4 });
+    capIo.observe(capSvg);
+  }
+</script>
+
+</body>
+</html>
